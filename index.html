@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>rAgE TweEts</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<h1>RaGe TweEtS*!</h1>
+		<p class="opening text"></p>
+		<form>
+			<textarea class="status-box" rows="2" placeholder="Let 'er rip."></textarea>
+		</form>
+		<a href="#" class="btn float-right" disabled="disabled">Post</a>
+		<span class="counter float-right">144</span>
+		<ul class="posts"></ul>
+	</div>
+    <script src="jquery.js"></script>
+    <script> 
+		var main = function() {
+
+		    $('.btn').click(function(){
+		        var post = $('.status-box').val();
+		        $('<li>').text(post).prependTo('.posts');
+		        $('.status-box').val('');
+		        $('.counter').text('144');
+		    });
+
+		    $('.status-box').keyup(function() {
+	        	var postLength = $(this).val().length;
+	        	var charactersLeft = 144 - postLength;
+	        	$('.counter').text(charactersLeft);
+
+	        	if (charactersLeft < 0) {
+            		$('.btn').addClass('disabled');
+		        }
+		        else if (charactersLeft === 144) {
+		            $('.btn').addClass('disabled');
+		        }
+		        else {
+		            $('.btn').removeClass('disabled');
+		        }
+		    });
+
+		    $('.opening').text("Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.");
+		    
+		    $('.btn').addClass('disabled');
+		}
+
+		$(document).ready(main); 
+    </script>
+</body>
+</html>
